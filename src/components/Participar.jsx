@@ -1,108 +1,107 @@
 import { useState } from 'react'
 
 function Participar() {
-  const [nome, setNome] = useState('')
-  const [email, setEmail] = useState('')
-  const [mensagem, setMensagem] = useState('')
-  const [sucesso, setSucesso] = useState(false)
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+    const [mensagem, setMensagem] = useState('')
+    const [sucesso, setSucesso] = useState(false)
 
-  function enviarFormulario(evento) {
-    evento.preventDefault()
+    function enviarFormulario(evento) {
+        evento.preventDefault()
 
-    if (nome.trim() === '' || email.trim() === '') {
-      setMensagem('Por favor, preencha todos os campos.')
-      setSucesso(false)
-      return
+        if (nome.trim() === '' || email.trim() === '') {
+            setMensagem('Por favor, preencha todos os campos.')
+            setSucesso(false)
+            return
+        }
+
+        setMensagem(`Obrigado, ${nome}! Sua participação foi registrada.`)
+        setSucesso(true)
+
+        setNome('')
+        setEmail('')
     }
 
-    setMensagem(`Obrigado, ${nome}! Sua participação foi registrada.`)
-    setSucesso(true)
+    return (
+        <section id="participar" className="py-5 bg-light">
+            <div className="container">
 
-    setNome('')
-    setEmail('')
-  }
+                <div className="text-center mb-4">
+                    <h2 className="text-success fw-bold">
+                        Faça Parte da Rede
+                    </h2>
 
-  return (
-    <section id="participar" className="py-5 bg-light">
-      <div className="container">
+                    <p>
+                        Junte-se ao Alimenta+ e faça parte dessa iniciativa
+                        de conscientização sobre alimentação e sustentabilidade.
+                    </p>
+                </div>
 
-        <div className="text-center mb-4">
-          <h2 className="text-success fw-bold">
-            Faça Parte da Rede
-          </h2>
+                <div className="row justify-content-center">
+                    <div className="col-md-7 col-lg-6">
 
-          <p>
-            Junte-se ao Alimenta+ e faça parte dessa iniciativa
-            de conscientização sobre alimentação e sustentabilidade.
-          </p>
-        </div>
+                        <div className="card shadow-sm">
+                            <div className="card-body p-4">
 
-        <div className="row justify-content-center">
-          <div className="col-md-7 col-lg-6">
+                                <form onSubmit={enviarFormulario}>
 
-            <div className="card shadow-sm">
-              <div className="card-body p-4">
+                                    <div className="mb-3">
+                                        <label htmlFor="nome" className="form-label">
+                                            Nome
+                                        </label>
 
-                <form onSubmit={enviarFormulario}>
+                                        <input
+                                            type="text"
+                                            id="nome"
+                                            className="form-control"
+                                            placeholder="Digite seu nome"
+                                            value={nome}
+                                            onChange={(evento) => setNome(evento.target.value)}
+                                        />
+                                    </div>
 
-                  <div className="mb-3">
-                    <label htmlFor="nome" className="form-label">
-                      Nome
-                    </label>
+                                    <div className="mb-3">
+                                        <label htmlFor="email" className="form-label">
+                                            E-mail
+                                        </label>
 
-                    <input
-                      type="text"
-                      id="nome"
-                      className="form-control"
-                      placeholder="Digite seu nome"
-                      value={nome}
-                      onChange={(evento) => setNome(evento.target.value)}
-                    />
-                  </div>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            className="form-control"
+                                            placeholder="Digite seu e-mail"
+                                            value={email}
+                                            onChange={(evento) => setEmail(evento.target.value)}
+                                        />
+                                    </div>
 
-                  <div className="mb-3">
-                    <label htmlFor="email" className="form-label">
-                      E-mail
-                    </label>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-success w-100"
+                                    >
+                                        Participar
+                                    </button>
 
-                    <input
-                      type="email"
-                      id="email"
-                      className="form-control"
-                      placeholder="Digite seu e-mail"
-                      value={email}
-                      onChange={(evento) => setEmail(evento.target.value)}
-                    />
-                  </div>
+                                </form>
 
-                  <button
-                    type="submit"
-                    className="btn btn-success w-100"
-                  >
-                    Participar
-                  </button>
+                                {mensagem && (
+                                    <div
+                                        className={`alert ${sucesso ? 'alert-success' : 'alert-danger'
+                                            } mt-3 text-center`}
+                                    >
+                                        {mensagem}
+                                    </div>
+                                )}
 
-                </form>
+                            </div>
+                        </div>
 
-                {mensagem && (
-                  <div
-                    className={`alert ${
-                      sucesso ? 'alert-success' : 'alert-danger'
-                    } mt-3 text-center`}
-                  >
-                    {mensagem}
-                  </div>
-                )}
+                    </div>
+                </div>
 
-              </div>
             </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-  )
+        </section>
+    )
 }
 
 export default Participar

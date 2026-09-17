@@ -14,12 +14,12 @@ function App() {
       <main>
         <Inicio />
         <ODS2 />
-        <ComoFunciona/>
-        <Dicas/>
-        <DadosAgricolas/>
-        <Participar/>
+        <ComoFunciona />
+        <Dicas />
+        <DadosAgricolas />
+        <Participar />
       </main>
-      <Footer/>
+      <Footer />
     </>
   )
 }
